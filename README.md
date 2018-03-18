@@ -1,7 +1,7 @@
 # webpack-entries
 ## webpack多入口框架
 
-## 请先git代表，并使用命令行进入项目根目录
+## 请先git项目代码，并使用命令行进入项目根目录
 `npm install`
 
 `npm run dev`
