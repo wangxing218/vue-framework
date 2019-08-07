@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const autoprefixer = require('autoprefixer')
 const px2rem = require('postcss-px2rem')
@@ -28,7 +29,7 @@ const cssOptions = [
   {
     loader: 'css-loader',
     options: {
-      minimize: Mode == 'production'
+      // minimize: Mode == 'production'
     }
   },
   {
@@ -150,6 +151,8 @@ var config = {
       filename: 'static/chunk/css/[name].[contenthash:6].css',
       chunkFilename: 'static/chunk/css/[name].[contenthash:6].css'
     }),
+    // 压缩css
+    new OptimizeCssAssetsPlugin()
   ],
 
   // 路径别名

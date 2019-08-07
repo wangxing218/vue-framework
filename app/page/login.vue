@@ -53,6 +53,9 @@ export default {
   methods: {
     changeCode() {
       this.random = Math.random()
+      import(/* webpackChunkName: "cache" */ '@util/cache').then(cache=>{
+        console.log(cache)
+      })
     },
     doSubmit() {
       this.$router.push('/')
