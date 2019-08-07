@@ -1,34 +1,43 @@
+/**
+ * webpack 执行环境统一入口
+ */
 const webpack = require('webpack')
-const webpackDevServer = require("webpack-dev-server")
-const merge = require('webpack-merge')
-const util = require('./util')
-
+const WebpackDevServer = require('webpack-dev-server')
+const util = require('./util.js')
 
 // 根据命令参数加载不同环境配置
-const env = process.env.NODE_ENV = process.argv[2]
-let config = require('./env.prod.js')
-let configEnv = require(`./env.${env}.js`)
-config = env !== 'prod' ? merge(config, configEnv) : config
-console.log(`当前环境为 ：${env}`)
-
+const argEnv = process.env.NODE_ENV = process.argv[2]
+const configUser = util.getConfig()
+let webpackConfig = require('./env.js')
+console.log(`当前环境为 ：${argEnv}`)
 
 // webpack 编译
-let compiler = webpack(config, (err, stats) => {
+let compileStart = Date.now()
+let compileCount = 0
+console.log(`编译中，请耐心等待...`)
+configUser.hot && WebpackDevServer.addDevServerEntrypoints(webpackConfig, webpackConfig.devServer)
+let compiler = webpack(webpackConfig, (err, stats) => {
   if (err) throw err
-  if (config.devServer) startServer()
-  console.log(`编译成功...`)
+  compileCount++
+  var compileTime = parseInt((Date.now() - compileStart) / 1000)
+  if (compileCount == 1) {
+    console.log(`编译成功！耗时：${compileTime} s`)
+    webpackConfig.watch && console.log(`正在兼听文件！`)
+    webpackConfig.devServer && startServer(webpackConfig.devServer)
+  } else {
+    console.log(`编译成功！ ${new Date().toLocaleString()}`)
+  }
 })
 
 // 启动服务器
-function startServer() {
-  var domain = '127.0.0.1'
-  serverConfig = config.devServer
-  let server = new webpackDevServer(compiler, serverConfig)
+function startServer(serverConfig) {
+  let server = new WebpackDevServer(compiler, serverConfig)
   console.log(`正在启动服务...`)
-  server.listen(serverConfig.port, serverConfig.port, (err, stats) => {
-    var url = `http://${domain}:${serverConfig.port}`
-    util.openBrowser(url)
+  server.listen(serverConfig.port, serverConfig.host, (err, stats) => {
+    var url = `http://${serverConfig.host}`
+    url += (serverConfig.port == 80 ? '' : `:${serverConfig.port}`)
+    url = configUser.root ? (url + configUser.root) : url
+    util.openUrl(url)
     console.log(`${url} 已启动...`)
   })
-  return server
 }

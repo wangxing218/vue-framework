@@ -1,0 +1,191 @@
+@charset "utf-8";
+
+/* base */
+* {
+  box-sizing: border-box;
+  font-family: 'microsoft yahei';
+  -webkit-tap-highlight-color: transparent;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+ol,
+dl,
+dt,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+li,
+ol {
+  list-style: none;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-size: $font-sm;
+  background-color: #fff;
+  color: $color-text-1;
+}
+
+a{
+  cursor: pointer;
+}
+
+input,
+select,
+button,
+textarea {
+  appearance: none;
+  outline: none;
+  font-size: $font-sm;
+  background-color: transparent;
+}
+
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.float-none {
+  float: none !important;
+}
+
+.cf {
+  clear: both;
+}
+
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.ver-top {
+  vertical-align: top !important;
+}
+
+.ver-middle {
+  vertical-align: middle !important;
+}
+
+.ver-bottom {
+  vertical-align: bottom !important;
+}
+
+.ver-base {
+  vertical-align: -50% !important;
+}
+
+.rel {
+  position: relative !important;
+}
+
+.abs {
+  position: absolute !important;
+  z-index: 99;
+}
+
+.cur-pointer {
+  cursor: pointer;
+}
+
+.nop {
+  white-space: nowrap !important;
+}
+
+.hide {
+  display: none;
+}
+
+.inline {
+  display: inline-block !important;
+  width: auto !important;
+}
+
+.block {
+  display: block !important;
+  width: 100% !important;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  color: $color-blue;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.over-hide {
+  overflow: hidden !important;
+}
+
+// 颜色字体
+@include setColor('color');
+@include setColor('bgc', 'background-color');
+@include setFontSize();
+@include setWidth();
+@include importIcon();
+
+// 边距填充
+@include setMarginPadding('mg', 'margin', );
+@include setMarginPadding('mgt', 'margin-top');
+@include setMarginPadding('mgr', 'margin-right');
+@include setMarginPadding('mgb', 'margin-bottom');
+@include setMarginPadding('mgl', 'margin-left');
+@include setMarginPadding('pd', 'padding');
+@include setMarginPadding('pdtb', ('padding-top', 'padding-bottom'));
+@include setMarginPadding('pdlr', ('padding-left', 'padding-right'));
+@include setMarginPadding('pdt', 'padding-top');
+@include setMarginPadding('pdr', 'padding-right');
+@include setMarginPadding('pdb', 'padding-bottom');
+@include setMarginPadding('pdl', 'padding-left');
+
+/*删格，边框*/
+@include splitRow();
+@include setBorder();
+@include setScrollStyle();
+
+// 进度条
+#nprogress {
+  .bar {
+    background: $color-blue !important;
+    z-index: 9999 !important;
+  }
+
+  .peg {
+    z-index: 9998 !important;
+    box-shadow: none !important;
+  }
+}
