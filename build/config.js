@@ -19,8 +19,8 @@ module.exports = {
     dist: '../dist',
     cssFile: false,
   },
-  // 公共配置，可在其他配置中覆盖
-  base: {
+  // 生产环境配置，可在其他配置中覆盖
+  prod: {
     // 根url，主要用于ajax请求路径前辍定义
     baseUrl: '/',
     // cnd地址，同output.publicPath
@@ -35,7 +35,5 @@ module.exports = {
     root: '',
   },
   // 测试环境配置
-  test: {},
-  // 生产环境配置
-  prod: {}
+  test: {}
 }

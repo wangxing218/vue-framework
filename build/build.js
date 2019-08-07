@@ -22,7 +22,6 @@ let compiler = webpack(webpackConfig, (err, stats) => {
   var compileTime = parseInt((Date.now() - compileStart) / 1000)
   if (compileCount == 1) {
     console.log(`编译成功！耗时：${compileTime} s`)
-    webpackConfig.watch && console.log(`正在兼听文件！`)
     webpackConfig.devServer && startServer(webpackConfig.devServer)
   } else {
     console.log(`编译成功！ ${new Date().toLocaleString()}`)

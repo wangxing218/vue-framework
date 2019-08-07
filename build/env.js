@@ -1,5 +1,5 @@
 /**
- * webpack 共用配置
+ * webpack 核心配置
  */
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -19,19 +19,16 @@ const Mode = {
   'dev': 'development',
   'test': 'production',
   'prod': 'production',
-}[process.env.NODE_ENV] || 'production'
+} [process.env.NODE_ENV] || 'production'
 
 // scss,css共用配置 及 postcss 插件设置
 const PostCssPlugins = [autoprefixer()]
-configUser.px2rem && PostCssPlugins.push(px2rem({ remUnit: configUser.px2rem }))
+configUser.px2rem && PostCssPlugins.push(px2rem({
+  remUnit: configUser.px2rem
+}))
 const cssOptions = [
   configUser.cssFile ? MiniCssExtractPlugin.loader : 'vue-style-loader',
-  {
-    loader: 'css-loader',
-    options: {
-      // minimize: Mode == 'production'
-    }
-  },
+  'css-loader',
   {
     loader: 'postcss-loader',
     options: {
@@ -86,40 +83,40 @@ var config = {
   // 加载器
   module: {
     rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-    },
-    {
-      test: /\.css$/,
-      use: cssOptions,
-    },
-    {
-      test: /\.scss$/,
-      use: cssOptions.concat([
-        'sass-loader',
-        {
-          loader: 'sass-resources-loader',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        use: cssOptions,
+      },
+      {
+        test: /\.scss$/,
+        use: cssOptions.concat([
+          'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [util.appResolve('asset/css/_var.scss')]
+            }
+          }
+        ]),
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
+      {
+        test: /\.(png|jpeg|jpg|gif|svg|eot|svg|ttf|woff|woff2)$/,
+        use: {
+          loader: 'url-loader',
           options: {
-            resources: [util.appResolve('asset/css/_var.scss')]
+            limit: 1,
+            name: 'static/chunk/asset/[name].[hash:6].[ext]'
           }
         }
-      ]),
-    },
-    {
-      test: /\.vue$/,
-      loader: 'vue-loader',
-    },
-    {
-      test: /\.(png|jpeg|jpg|gif|svg|eot|svg|ttf|woff|woff2)$/,
-      use: {
-        loader: 'url-loader',
-        options: {
-          limit: 1,
-          name: 'static/chunk/asset/[name].[hash:6].[ext]'
-        }
-      }
-    },
+      },
     ]
   },
 
@@ -169,20 +166,8 @@ var config = {
   },
 }
 
-// 是否开启文件兼听,dev环境常用
-if (configUser.watch) {
-  config = merge(config, {
-    watch: true,
-    watchOptions: {
-      poll: 1000,
-      aggregateTimeout: 1000,
-      ignored: /node_modules/
-    },
-  })
-}
-
-// 是否启动本地服务,local环境常用
-if (configUser.port) {
+// dev环境启动本地服务
+if (process.env.NODE_ENV === 'dev') {
   // 代理列表
   var proxys = {}
   for (var key in configUser.proxy) {
@@ -203,7 +188,7 @@ if (configUser.port) {
       proxy: proxys,
       // app拦截请求
       before: app => {
-        configUser.mock && require('./mock.js')(app)
+        configUser.mock && require('./mock')(app)
       },
       host: host,
       port: ip,

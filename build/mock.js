@@ -4,7 +4,7 @@
  */
 const fs = require('fs')
 const mock = require('mockjs')
-const util = require('./util.js')
+const util = require('./util')
 const mockDir = util.rootResolve('mock')
 const mockList = util.getConfig().mock || false
 

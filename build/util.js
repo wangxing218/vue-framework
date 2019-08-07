@@ -3,7 +3,7 @@
  */
 const path = require('path')
 const childProcess = require('child_process')
-const config = require('./config.js')
+const config = require('./config')
 
 module.exports = {
   // 项目根路径
@@ -24,8 +24,8 @@ module.exports = {
 
   // 从config 获取不同环境 的用户配置
   getConfig(env){
-    env = env || process.env.NODE_ENV || 'local'
-    return Object.assign({},config.base, config[env] || {})
+    env = env || process.env.NODE_ENV || 'prod'
+    return Object.assign({},config.prod, config[env] || {})
   },
 
   // 打开浏览器

@@ -7,6 +7,8 @@ import Login from '../page/login.vue'
 import Layout from '../page/layout.vue'
 import Home from '../page/home.vue'
 
+import Error404 from '../page/404.vue'
+
 // 定义路由
 const routes = [{
     path: '/',
@@ -21,6 +23,11 @@ const routes = [{
     path: '/login',
     component: Login,
     name: 'Login'
+  },
+  {
+    path: '*',
+    component: Error404,
+    name: 'Error404'
   },
 ]
 
