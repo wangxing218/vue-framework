@@ -1,4 +1,4 @@
-# webpack-entries
+# vue-framework
 ## webpack多入口框架
 
 ## 请先git项目代码，并使用命令行进入项目根目录
