@@ -1,8 +1,13 @@
 {
-  "name": "web-vue",
+  "name": "vue-framework",
   "version": "1.0.0",
   "description": "Vue前端开发框架",
   "author": "boyxing",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangxing218/vue-framework"
+  },
   "main": "index.js",
   "scripts": {
     "dev": "node build/build.js dev",
@@ -50,6 +55,6 @@
   },
   "browserslist": [
     "last 2 versions",
-    "ie >= 10"
+    "ie >= 9"
   ]
 }
