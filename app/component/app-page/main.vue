@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: 'UiPage',
+  name: 'app-page',
   data() {
     return {
       pagerStart: 1,
@@ -118,7 +118,6 @@ export default {
   padding: 0 14px;
   cursor: pointer;
   color: #333;
-  float: left;
   margin-left: 10px;
 }
 .ui-page > li:first {
