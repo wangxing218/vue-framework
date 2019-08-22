@@ -4,10 +4,7 @@
   "description": "Vue前端开发框架",
   "author": "boyxing",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wangxing218/vue-framework"
-  },
+  "repository": "https://github.com/wangxing218/vue-framework",
   "main": "index.js",
   "scripts": {
     "dev": "node build/build.js dev",
