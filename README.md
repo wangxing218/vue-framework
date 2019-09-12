@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 命令说明:   
-npm run dev 开始环境会启动本地server，自动获取本机ip并打开浏览器  
+npm run dev 开发环境会启动本地server，自动获取本机ip并打开浏览器  
 npm run test 测试环境打包  
 npm run prod 生产环境打包  
 
