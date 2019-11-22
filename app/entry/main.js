@@ -1,4 +1,4 @@
-import 'es6-promise/auto'
+import 'core-js/features/promise'
 import Vue from 'vue'
 import store from '../store/index'
 import App from './app.vue'
@@ -8,7 +8,7 @@ Vue.config.devtools = false
 Vue.config.productionTip = false
 
 // 引入样式
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
 import '@css/common.scss'
 import '@css/home.scss'
 import '@service/filter'

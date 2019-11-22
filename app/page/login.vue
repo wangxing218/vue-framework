@@ -21,7 +21,7 @@
           </el-col>
         </el-form-item>
         <el-form-item>
-          <el-button class="block" type="primary" @click="doSubmit">登录</el-button>
+          <el-button class="block" type="default" @click="doSubmit">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -43,7 +43,7 @@ export default {
       user: state => state.loginUser.username
     }),
     imgCode() {
-      return BASE_URL + '/vcode?' + this.random
+      return process.env.BASE_URL + '/vcode?' + this.random
     }
   },
   components: {},

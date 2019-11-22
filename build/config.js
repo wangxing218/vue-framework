@@ -33,6 +33,8 @@ module.exports = {
     // px2rem: 100,
     // 入口页路径
     root: '',
+    // 自定义环境变量，使用process.env.NAME访问
+    env: {}
   },
   // 测试环境配置
   test: {}

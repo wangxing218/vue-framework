@@ -14,7 +14,7 @@
         <el-date-picker type="date" placeholder="选择日期" v-model="search.date"></el-date-picker>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="getList(true)">查询</el-button>
+        <el-button type="success" @click="getList(true)">查询</el-button>
       </el-form-item>
     </el-form>
     <el-table ref="multipleTable" :data="listData" tooltip-effect="dark" @selection-change="handleSelectionChange">

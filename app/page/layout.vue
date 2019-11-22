@@ -168,5 +168,7 @@ $sizeMap: (0,0),
   width: $width;
   float: left;
 }
-
+.my-title{
+  display: flex;
+}
 </style>

@@ -9,7 +9,7 @@ nprogress.configure({
 
 // 通用配置
 const config = {
-  baseURL: BASE_URL,
+  baseURL: process.env.BASE_URL,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-Requested-With': 'XMLHttpRequest'
