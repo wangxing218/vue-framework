@@ -3,7 +3,7 @@
     <div class="home-login">
       <el-form ref="form">
         <el-form-item>
-          <h2 class="text-center">管理系统</h2>
+          <h2 class="text-center">欢迎登录</h2>
         </el-form-item>
         <el-form-item>
           <el-input v-model="username" placeholder="账号" :prefix-icon="'el-icon-message'"></el-input>
@@ -21,7 +21,7 @@
           </el-col>
         </el-form-item>
         <el-form-item>
-          <el-button class="block" type="default" @click="doSubmit">登录</el-button>
+          <el-button class="block" type="primary" @click="doSubmit">登录</el-button>
         </el-form-item>
       </el-form>
     </div>

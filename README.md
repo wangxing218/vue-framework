@@ -43,7 +43,6 @@ Android 4.0+
 		* main.js					| 入口js
 		* router.js				| 路由
 	* page							| 页面，大型应用可以按功能划分文件夹
-	* public						| 静态根目录
 	* service  					| 逻辑层，主要存放公共服务和方法
 	* store  						| 状态管理
 	* util							| 工具类
@@ -61,6 +60,7 @@ Android 4.0+
 			* js						| 打包的js，
 	* index.html 				| 打包的首页html文件
 * mock								| mock数据文件夹，文件结构同请求url
+* public							| 静态根目录
 * .babelrc 						| babel配置文件
 * .gitignore 					| 文件排除
 * package-lock.json 	| 版本锁定

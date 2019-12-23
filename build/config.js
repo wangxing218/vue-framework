@@ -2,7 +2,7 @@ module.exports = {
   // 开发环境配置
   dev: {
     // 本地server的host，为空时默认自动获取本机ip
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     // 本地server端口
     port: 9000,
     // 代理配置
@@ -22,7 +22,7 @@ module.exports = {
   // 生产环境配置，可在其他配置中覆盖
   prod: {
     // 根url，主要用于ajax请求路径前辍定义
-    baseUrl: '/',
+    baseUrl: '',
     // cnd地址，同output.publicPath
     cdnUrl: '/',
     // 打包输出目录

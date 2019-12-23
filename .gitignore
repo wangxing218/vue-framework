@@ -2,6 +2,7 @@
 .settings/
 .classpath
 **.iml
+**.log
 target/
 
 node_modules/

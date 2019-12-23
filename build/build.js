@@ -36,7 +36,6 @@ function startServer(serverConfig) {
     var url = `http://${serverConfig.host}`
     url += (serverConfig.port == 80 ? '' : `:${serverConfig.port}`)
     url = configUser.root ? (url + configUser.root) : url
-    util.openUrl(url)
-    console.log(`${url} 已启动...`)
+    console.log(`${url.replace('0.0.0.0','127.0.0.1')} 已启动...`)
   })
 }

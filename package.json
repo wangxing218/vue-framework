@@ -7,6 +7,8 @@
   "repository": "https://github.com/wangxing218/vue-framework",
   "main": "index.js",
   "scripts": {
+    "start": "npm run dev",
+    "build": "npm run prod",
     "dev": "node build/build.js dev",
     "test": "node build/build.js test",
     "prod": "node build/build.js prod"
@@ -18,6 +20,7 @@
     "@babel/runtime": "^7.5.5",
     "autoprefixer": "^8.2.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-component": "^1.1.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^3.2.0",

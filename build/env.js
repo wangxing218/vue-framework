@@ -138,7 +138,7 @@ var config = {
     }),
     // 拷贝静态文件
     new CopyWebpackPlugin([{
-      from: util.appResolve('public'),
+      from: util.rootResolve('public'),
       to: util.distResolve(),
     }]),
     // 生成html
