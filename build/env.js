@@ -59,7 +59,7 @@ var config = {
       cacheGroups: {
         commons: {
           chunks: 'initial',
-          minChunks: 2,
+          minChunks: 5,
           maxInitialRequests: 5,
           minSize: 0
         },
