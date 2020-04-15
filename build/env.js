@@ -202,8 +202,8 @@ if (process.env.NODE_ENV === 'dev') {
       disableHostCheck: true,
       clientLogLevel: 'error',
       watchOptions: {
-        poll: 1000,
-        aggregateTimeout: 1000,
+        poll: 300,
+        aggregateTimeout: 300,
         ignored: /node_modules/
       },
     },
