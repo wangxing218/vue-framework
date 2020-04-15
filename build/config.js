@@ -34,7 +34,15 @@ module.exports = {
     // 入口页路径
     root: '',
     // 自定义环境变量，使用process.env.NAME访问
-    env: {}
+    env: {},
+    // 部署配置
+    deploy:{
+      host: '127.0.0.1',
+      username: 'root',
+      port: 22,
+      password: 'root',
+      remoteDir: '/www/web'
+    }
   },
   // 测试环境配置
   test: {}

@@ -59,7 +59,7 @@ var config = {
       cacheGroups: {
         commons: {
           chunks: 'initial',
-          minChunks: 2,
+          minChunks: 5,
           maxInitialRequests: 5,
           minSize: 0
         },
@@ -183,7 +183,7 @@ if (process.env.NODE_ENV === 'dev') {
     proxys[key] = res
   }
   // 主机和端口
-  var host = configUser.host || util.getLocalIp()
+  var host = configUser.host || '0.0.0.0'
   var ip = configUser.port || 80
 
   config = merge(config, {

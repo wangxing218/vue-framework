@@ -23,33 +23,9 @@ module.exports = {
   },
 
   // 从config 获取不同环境 的用户配置
-  getConfig(env){
+  getConfig(env) {
     env = env || process.env.NODE_ENV || 'prod'
-    return Object.assign({},config.prod, config[env] || {})
+    return Object.assign({}, config.prod, config[env] || {})
   },
 
-  // 打开浏览器
-  openUrl(url = '127.0.0.1') {
-    var cmd = process.platform == 'darwin' ? 'open' : 'start'
-    childProcess.exec(`${cmd} ${url}`)
-  },
-
-  // 获取本机ip
-  getLocalIp() {
-    var os = require("os");
-    var networkInterfaces = os.networkInterfaces()
-    let ip = localIp = '127.0.0.1'
-    Object.keys(networkInterfaces).forEach(key => {
-      let items = networkInterfaces[key]
-      if (ip !== localIp) return
-      for (var i in items) {
-        var self = items[i]
-        if (self.address && (self.address.match(/^(192\.168\.)|(10\.1\.)/))) {
-          ip = self.address
-          return false
-        }
-      }
-    })
-    return ip
-  },
 }

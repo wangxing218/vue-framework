@@ -73,7 +73,7 @@ ajax.get = (url, params, opt) => {
  * @param {*} data 
  * @param {*} opt 
  */
-ajax.post = (url, data, opt) => {
+ajax.postForm = (url, data, opt) => {
   return ajax({
     ...opt,
     method: 'post',
@@ -88,7 +88,7 @@ ajax.post = (url, data, opt) => {
  * @param {*} data 
  * @param {*} opt 
  */
-ajax.postJson = (url, data, opt) => {
+ajax.post = (url, data, opt) => {
   return ajax({
     ...opt,
     method: 'post',
