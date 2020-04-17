@@ -57,7 +57,7 @@ export default {
     // 获取列表
     async getList(reload = false) {
       if(reload === true) this.pageIndex = 1
-      const data = await this.$ajax.get('/movies', {
+      const data = await this.$ajax.get('movies', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize
       })

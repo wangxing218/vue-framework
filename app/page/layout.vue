@@ -2,9 +2,10 @@
   <el-container class="home-container">
     <el-header class="pdt-sm color-white bgc-gray">
       <el-col :span="10">
-        <h2 class="my-title">系统名称</h2>
+        <h2 class="my-title"> <img src="~@image/logo.gif" alt=""> 系统名称</h2>
       </el-col>
       <el-col class="text-right" :span="14">
+        <div class="icon"></div>
         <el-button class="color-white" type="text" :icon="'el-icon-service'">admin</el-button>
         <a class="mgl-bg el-icon-bell"></a>
         <router-link :to="'/login'" class="color-white mgl-bg el-icon-upload2"></router-link>
@@ -138,7 +139,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 $blue: #0080ff;
 $width : 100px;
 
@@ -170,5 +171,12 @@ $sizeMap: (0,0),
 }
 .my-title{
   display: flex;
+}
+.icon{
+  background: url("~@image/icon.png") no-repeat;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  vertical-align: middle;
 }
 </style>

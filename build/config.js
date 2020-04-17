@@ -9,8 +9,7 @@ module.exports = {
     proxy: {
       // '/api': 'https://www.douban.com/api',
     },
-    baseUrl: '/api',
-    cdnUrl: '/',
+    baseUrl: './api',
     // mock数据请求前辍,请在/mock中配置json数据，不启用请设为false
     mock: '/api',
     // 是否启用热更新
@@ -21,10 +20,10 @@ module.exports = {
   },
   // 生产环境配置，可在其他配置中覆盖
   prod: {
-    // 根url，主要用于ajax请求路径前辍定义
+    // 根url，于ajax请求路径前辍定义
     baseUrl: '',
     // cnd地址，同output.publicPath
-    cdnUrl: '/',
+    cdnUrl: '.',
     // 打包输出目录
     dist: '../dist',
     // 是否将vue文件中的css提取到单独css文件中

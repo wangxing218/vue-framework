@@ -19,7 +19,7 @@ const Mode = {
   'dev': 'development',
   'test': 'production',
   'prod': 'production',
-} [process.env.NODE_ENV] || 'production'
+}[process.env.NODE_ENV] || 'production'
 
 // scss,css共用配置 及 postcss 插件设置
 const PostCssPlugins = [autoprefixer()]
@@ -27,7 +27,12 @@ configUser.px2rem && PostCssPlugins.push(px2rem({
   remUnit: configUser.px2rem
 }))
 const cssOptions = [
-  configUser.cssFile ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+  configUser.cssFile ? {
+    loader: MiniCssExtractPlugin.loader,
+    options: {
+      publicPath: '../../'
+    }
+  } : 'vue-style-loader',
   'css-loader',
   {
     loader: 'postcss-loader',
@@ -48,8 +53,8 @@ var config = {
   },
   output: {
     path: util.distResolve(),
-    filename: 'static/chunk/js/[name].[contenthash:6].js',
-    chunkFilename: 'static/chunk/js/[name].[contenthash:6].js',
+    filename: 'static/js/[name].[contenthash:6].js',
+    chunkFilename: 'static/js/[name].[contenthash:6].js',
     publicPath: configUser.cdnUrl.endsWith('/') ? configUser.cdnUrl : configUser.cdnUrl + '/',
   },
 
@@ -84,40 +89,40 @@ var config = {
   // 加载器
   module: {
     rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.css$/,
-        use: cssOptions,
-      },
-      {
-        test: /\.scss$/,
-        use: cssOptions.concat([
-          'sass-loader',
-          {
-            loader: 'sass-resources-loader',
-            options: {
-              resources: [util.appResolve('asset/css/_var.scss')]
-            }
-          }
-        ]),
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
-      {
-        test: /\.(png|jpeg|jpg|gif|svg|eot|svg|ttf|woff|woff2)$/,
-        use: {
-          loader: 'url-loader',
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+    },
+    {
+      test: /\.css$/,
+      use: cssOptions,
+    },
+    {
+      test: /\.scss$/,
+      use: cssOptions.concat([
+        'sass-loader',
+        {
+          loader: 'sass-resources-loader',
           options: {
-            limit: 1,
-            name: 'static/chunk/asset/[name].[hash:6].[ext]'
+            resources: [util.appResolve('asset/css/_var.scss')]
           }
         }
-      },
+      ]),
+    },
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader',
+    },
+    {
+      test: /\.(png|jpeg|jpg|gif|svg|eot|svg|ttf|woff|woff2)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 1,
+          name: 'static/asset/[name].[hash:6].[ext]'
+        }
+      }
+    },
     ]
   },
 
@@ -148,8 +153,8 @@ var config = {
     }),
     // 生成css
     new MiniCssExtractPlugin({
-      filename: 'static/chunk/css/[name].[contenthash:6].css',
-      chunkFilename: 'static/chunk/css/[name].[contenthash:6].css'
+      filename: 'static/css/[name].[contenthash:6].css',
+      chunkFilename: 'static/css/[name].[contenthash:6].css',
     }),
     // 压缩css
     new OptimizeCssAssetsPlugin()

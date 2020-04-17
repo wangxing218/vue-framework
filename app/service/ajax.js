@@ -8,8 +8,9 @@ nprogress.configure({
 })
 
 // 通用配置
+const baseURL = ['', '.', './'].indexOf(process.env.BASE_URL) + 1 ? location.pathname : process.env.BASE_URL
 const config = {
-  baseURL: process.env.BASE_URL,
+  baseURL,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-Requested-With': 'XMLHttpRequest'
