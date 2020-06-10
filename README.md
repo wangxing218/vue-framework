@@ -6,7 +6,13 @@
 使用最少的package依赖，实现最快的编译速度和最稳定高效的代码产出。  
 
 ## 安装运行
-在开发之前，请打开 build/config.js 按项目实际环境配置各参数。  
+由于国内网络原因，在正式开发项目之前，建议设置npm淘宝源；
+```
+npm config set registry https://registry.npm.taobao.org/
+npm config set sass-binary-site https://npm.taobao.org/mirrors/node-sass
+```
+
+打开 build/config.js 按项目实际环境配置各参数。  
 ```
 npm install
 npm run dev
