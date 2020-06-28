@@ -76,5 +76,3 @@ Android 4.0+
 ## 联系我
 有啥技术上的问题，可以与我交流
 ### QQ ： <a href="http://wpa.qq.com/msgrd?v=3&uin=1263996779&site=qq&menu=yes" target="_blank">1263996779</a>
-### 如果对您有帮助，欢迎打赏
-<img src="https://wangxing218.github.io/app-rem/test/wxpay.jpg">
