@@ -90,7 +90,7 @@ $width-hg: 550px;
   (border-2, $color-border-2),
   (border-3, $color-border-3),
   (border-4, $color-border-4) {
-    .#{$prefix}-#{$name} {
+    .#{$prefix}-#{'' + $name} {
       #{$css}: $value !important;
     }
   }
@@ -107,7 +107,7 @@ $width-hg: 550px;
   (bg, $size-bg),
   (lg, $size-lg),
   (hg, $size-hg) {
-    .#{$prefix}-#{$name} {
+    .#{$prefix}-#{'' + $name} {
       @if type-of($css)==list {
         @each $item in $css {
           #{$item}: $size !important;
@@ -150,7 +150,7 @@ $width-hg: 550px;
   (half, 50%),
   (full, 100%),
    {
-    .#{$prefix}-#{$name} {
+    .#{$prefix}-#{'' + $name} {
       width: $size !important;
     }
   }
