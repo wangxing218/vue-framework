@@ -1,21 +1,21 @@
 // 颜色
 $color-black: #000;
-$color-dark: #001529;
+$color-dark: #333;
+$color-gray: #989898;
+$color-light: #fafafa;
 $color-white: #FFF;
-$color-blue: #009DFF;
+
+$color-blue: #488AFA;
 $color-green: #51C419;
 $color-orange: #FF9E00;
 $color-yellow: #E6A23C;
 $color-red: #FF3B30;
-$color-gray: #989898;
-$color-text-1: rgb(116, 103, 103);
-$color-text-2: #606266;
+
+$color-text-1: #333333;
+$color-text-2: #666666;
 $color-text-3: #A8A8A8;
 $color-text-4: #CACACA;
-$color-border-1: #DCDFE6;
-$color-border-2: #EBEEF5;
-$color-border-3: #F0F0F0;
-$color-border-4: #F9FBFF;
+
 
 // 字体大小
 $font-xs: 12px;
@@ -35,62 +35,25 @@ $size-lg: 30px;
 $size-hg: 50px;
 
 
-// 常见宽度定义
-$width-xs: 50px;
-$width-sm: 80px;
-$width-md: 130px;
-$width-bg: 210px;
-$width-lg: 340px;
-$width-hg: 550px;
-
-
-// 滚动条样式
-@mixin setScrollStyle {
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background: #ddd;
-  }
-
-  ::-webkit-scrollbar-thumb:active {
-    background: #999;
-  }
-
-  ::-webkit-scrollbar-thumb:window-inactive {
-    background: #EBEBEB;
-  }
-}
-
 // 生成颜色样式列表
-@mixin setColor($prefix, $css: color) {
+@mixin setColor($prefix: 'color', $css: 'color') {
 
   @each $name,
-  $value in (black, $color-black),
-  (dark, $color-dark),
-  (white, $color-white),
-  (blue, $color-blue),
-  (green, $color-green),
-  (orange, $color-orange),
-  (yellow, $color-yellow),
-  (red, $color-red),
-  (gray, $color-gray),
-  (text-1, $color-text-1),
-  (text-2, $color-text-2),
-  (text-3, $color-text-3),
-  (text-4, $color-text-4),
-  (border-1, $color-border-1),
-  (border-2, $color-border-2),
-  (border-3, $color-border-3),
-  (border-4, $color-border-4) {
-    .#{$prefix}-#{'' + $name} {
+  $value in ('black', $color-black),
+  ('dark', $color-dark),
+  ('gray', $color-gray),
+  ('light', $color-light),
+  ('white', $color-white),
+  ('blue', $color-blue),
+  ('green', $color-green),
+  ('orange', $color-orange),
+  ('yellow', $color-yellow),
+  ('red', $color-red),
+  ('text-1', $color-text-1),
+  ('text-2', $color-text-2),
+  ('text-3', $color-text-3),
+  ('text-4', $color-text-4) {
+    .#{$prefix}-#{$name} {
       #{$css}: $value !important;
     }
   }
@@ -100,14 +63,14 @@ $width-hg: 550px;
 @mixin setMarginPadding($prefix, $css) {
 
   @each $name,
-  $size in (0, $size-0),
-  (xs, $size-xs),
-  (sm, $size-sm),
-  (md, $size-md),
-  (bg, $size-bg),
-  (lg, $size-lg),
-  (hg, $size-hg) {
-    .#{$prefix}-#{'' + $name} {
+  $size in ('0', $size-0),
+  ('xs', $size-xs),
+  ('sm', $size-sm),
+  ('md', $size-md),
+  ('bg', $size-bg),
+  ('lg', $size-lg),
+  ('hg', $size-hg) {
+    .#{$prefix}-#{$name} {
       @if type-of($css)==list {
         @each $item in $css {
           #{$item}: $size !important;
@@ -121,37 +84,48 @@ $width-hg: 550px;
   }
 }
 
+// width height 百分比
+@mixin setWidthHeight {
+  @for $i from 1 through 10 {
+    .width-#{$i}0p {
+      width: (100% / $i);
+    }
+
+    .height-#{$i}0p {
+      width: (100% / $i);
+    }
+
+  }
+
+  .width-half {
+    width: 50%;
+  }
+
+  .width-full {
+    width: 100%;
+  }
+
+  .height-half {
+    height: 50%;
+  }
+
+  .height-full {
+    height: 100%;
+  }
+}
+
 // 生成字体尺寸
 @mixin setFontSize($prefix: font) {
 
   @each $name,
-  $size in (xs, $font-xs),
-  (sm, $font-sm),
-  (md, $font-md),
-  (bg, $font-bg),
-  (lg, $font-lg),
-  (hg, $font-hg) {
+  $size in ('xs', $font-xs),
+  ('sm', $font-sm),
+  ('md', $font-md),
+  ('bg', $font-bg),
+  ('lg', $font-lg),
+  ('hg', $font-hg) {
     .#{$prefix}-#{$name} {
       font-size: $size !important;
-    }
-  }
-}
-
-// 生成定义宽度
-@mixin setWidth($prefix: width) {
-
-  @each $name,
-  $size in (xs, $width-xs),
-  (sm, $width-sm),
-  (md, $width-md),
-  (bg, $width-bg),
-  (lg, $width-lg),
-  (hg, $width-hg),
-  (half, 50%),
-  (full, 100%),
-   {
-    .#{$prefix}-#{'' + $name} {
-      width: $size !important;
     }
   }
 }
@@ -167,51 +141,18 @@ $width-hg: 550px;
   }
 }
 
-// 最大宽度居中
-@mixin layout() {
-  @include clearfix;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: $page-max-width;
-  min-width: $page-min-width;
-}
-
 // 阴影
 @mixin boxShadow() {
   box-shadow: 0 2px 20px rgba(25, 125, 188, 0.1);
 }
 
 // 流海屏幕填充
-@mixin iphoneX($color: #fff, $location: bottom) {
+@mixin iphoneX($location: bottom) {
   box-sizing: content-box;
+  padding-bottom: const(safe-area-inset-#{$location});
   padding-bottom: env(safe-area-inset-#{$location});
-  border-bottom: env(safe-area-inset-#{$location}) solid #{$color};
 }
 
-// 引入自定义自体
-@mixin importIcon() {
-  @font-face {
-    font-family: 'ui-icon';
-    src: url('../font/ui-icon.woff?-9uki6c') format('woff'), url('../font/ui-icon.ttf?-9uki6c') format('truetype');
-    font-weight: 400;
-    font-style: normal
-  }
-
-  .ui-icon {
-    font-family: 'ui-icon' !important;
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    vertical-align: middle;
-    font-size: 1.2em;
-    display: inline-block;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-  }
-}
 
 // 文字超出显示小点
 @mixin textHidden() {
@@ -226,78 +167,146 @@ $width-hg: 550px;
     @include clearfix();
   }
 
-  @for $i from 1 through 12 {
+  @for $i from 1 through 24 {
     .col-#{$i} {
       float: left;
       min-height: 5px;
-      width: (100% / 12 * $i);
+      width: (100% / 24 * $i);
     }
   }
 }
 
-// 边框
-@mixin setBorder() {
-  .bd-1 {
-    border: 1px solid $color-border-2 !important;
-    /*no*/
+// helper-flex
+@mixin flexHelper {
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .bdt-1 {
-    border-top: 1px solid $color-border-2 !important;
-    /*no*/
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .bdb-1 {
-    border-bottom: 1px solid $color-border-2 !important;
-    /*no*/
+  .flex,
+  .flex-column {
+    &.align-start {
+      align-items: flex-start;
+    }
+
+    &.align-end {
+      align-items: flex-end;
+    }
+
+    &.align-stretch {
+      align-items: stretch;
+    }
+
+    &.justify-start {
+      justify-content: flex-start;
+    }
+
+    &.justify-end {
+      justify-content: flex-end;
+    }
+
+    &.justify-center {
+      justify-content: center;
+    }
+
+    &.justify-between {
+      justify-content: space-between;
+    }
+
+    &.justify-around {
+      justify-content: space-around;
+    }
   }
 
-  .bdl-1 {
-    border-left: 1px solid $color-border-2 !important;
-    /*no*/
+  .flex-none {
+    flex: none;
   }
 
-  .bdr-1 {
-    border-right: 1px solid $color-border-2 !important;
-    /*no*/
+  .flex-auto {
+    flex: auto;
   }
 
-  .bdtb-1 {
-    border-top: 1px solid $color-border-2 !important;
-    /*no*/
-    border-bottom: 1px solid $color-border-2 !important;
-    /*no*/
+  .flex-1 {
+    flex: 1;
   }
 
-  .bdlr-1 {
-    border-left: 1px solid $color-border-2 !important;
-    /*no*/
-    border-right: 1px solid $color-border-2 !important;
-    /*no*/
+  .flex-2 {
+    flex: 2;
   }
 
-  .bd-0 {
-    border: none !important;
-    /*no*/
-  }
-
-  .bdt-0 {
-    border-top: none !important;
-    /*no*/
-  }
-
-  .bdb-0 {
-    border-bottom: none !important;
-    /*no*/
-  }
-
-  .bdl-0 {
-    border-left: none !important;
-    /*no*/
-  }
-
-  .bdr-0 {
-    border-right: none !important;
-    /*no*/
+  .flex-3 {
+    flex: 2;
   }
 }
+
+// textHelper
+@mixin textHelper {
+  .text-left {
+    text-align: left !important;
+  }
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  .text-right {
+    text-align: right !important;
+  }
+
+  .text-justify {
+    text-align: justify !important;
+  }
+
+  .text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .font-light {
+    font-weight: 200 !important;
+  }
+
+  .font-normal {
+    font-weight: normal !important;
+  }
+
+  .font-bold {
+    font-weight: 600 !important;
+  }
+
+  .lh-10 {
+    line-height: 1.0 !important;
+  }
+
+  .lh-14 {
+    line-height: 1.4 !important;
+  }
+
+  .lh-16 {
+    line-height: 1.6 !important;
+  }
+
+  .lh-18 {
+    line-height: 1.8 !important;
+  }
+
+  .lh-20 {
+    line-height: 2.0 !important;
+  }
+
+  .lh-25 {
+    line-height: 2.5 !important;
+  }
+
+}
+
+// layoutHelper

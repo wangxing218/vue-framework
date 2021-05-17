@@ -2,51 +2,31 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-// 引入页面组件
-import Login from '../page/login.vue'
-import Layout from '../page/layout.vue'
-import Home from '../page/home.vue'
+import Index from '../page/Index.vue'
+import Home from '../page/Home.vue'
+import Login from '../page/Login.vue'
 
-import Error404 from '../page/404.vue'
-
-// 定义路由
-const routes = [{
-    path: '/',
-    component: Layout,
-    children: [{
-      path: '/',
-      component: Home,
-      name: 'Home'
-    }]
-  },
-  {
-    path: '/login',
-    component: Login,
-    name: 'Login'
-  },
-  {
-    path: '*',
-    component: Error404,
-    name: 'Error404'
-  },
-]
-
-// 跳由实例化
 const router = new VueRouter({
-  routes,
-  linkActiveClass: 'active',
-  linkExactActiveClass: 'active',
-})
-
-// 路由拦截
-router.beforeEach((to, from, next) => {
-  // 做一个路由拦截
-  next()
-})
-
-// 路由跳转，滚动条置顶
-router.afterEach(() => {
-  window.scrollTo(0, 0)
+  mode: 'hash',
+  routes: [
+    {
+      path: '/',
+      name: 'Index',
+      component: Index,
+      children: [
+        {
+          path: '/',
+          name: 'Home',
+          component: Home,
+        },
+        {
+          path: '/login',
+          name: 'Login',
+          component: Login,
+        },
+      ]
+    }
+  ],
 })
 
 export default router
