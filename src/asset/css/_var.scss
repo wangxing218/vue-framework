@@ -88,13 +88,12 @@ $size-hg: 50px;
 @mixin setWidthHeight {
   @for $i from 1 through 10 {
     .width-#{$i}0p {
-      width: (100% / $i);
+      width: (10% * $i);
     }
 
     .height-#{$i}0p {
-      width: (100% / $i);
+      width: (10% * $i);
     }
-
   }
 
   .width-half {

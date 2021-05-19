@@ -1,6 +1,6 @@
 import axios from 'axios'
-import urlTool from '@/util/url'
-import Vue from 'vue'
+import { Toast } from 'vant'
+import config from '../entry/config'
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 nprogress.configure({
@@ -8,48 +8,44 @@ nprogress.configure({
 })
 
 // 通用配置
-const baseURL = ['', '.', './'].indexOf(process.env.BASE_URL) + 1 ? location.pathname : process.env.BASE_URL
-const config = {
-  baseURL,
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'X-Requested-With': 'XMLHttpRequest'
-  },
+const instance = axios.create({
+  baseURL: config.apiUrl,
   timeout: 15e3,
-  error: true,
-}
+})
 
 /**
  * ajax请求
- * @param {*} opt 
+ * @param {*} options 
  */
-const ajax = async (opt) => {
-  if (opt.nprogress === undefined) {
+export async function ajax(options = {}) {
+  if (options.nprogress === undefined) {
     nprogress.start()
     nprogress.inc(0.6)
   }
   try {
-    var resp = await axios({
-      ...config,
-      ...opt,
+    const { data } = await instance({
+      ...options,
     })
-    nprogress.done()
-    resp.data && resp.data.fail && handleError(resp.data)
-    return resp.data
-  } catch (error) {
-    nprogress.done()
-    let msg = {
-      fail: true,
-      code: '504',
-      msg: '服务器出故障了~',
+    if (data && Number(data.code) !== 0) {
+      return handleError(data)
     }
-    handleError(msg)
-    return msg
+    return data
+  } catch (err) {
+    return handleError({
+      code: 504,
+      msg: err.msg || '服务器出故障了~',
+    })
+  } finally {
+    nprogress.done()
   }
   // 自动处理错误
   function handleError(err) {
-    if (opt.error === undefined) return Vue.prototype.$message.error(err.msg)
-    typeof opt.error == 'function' && opt.error(err)
+    if (options.error === undefined) {
+      Toast(err.msg)
+    } else if (options.error === 'function') {
+      options.error(err)
+    }
+    return Promise.reject(err)
   }
 }
 
@@ -57,45 +53,28 @@ const ajax = async (opt) => {
  * 提交get请求
  * @param {*} url 
  * @param {*} params
- * @param {*} opt 
+ * @param {*} options 
  */
-ajax.get = (url, params, opt) => {
+export function get(url, params, options) {
   return ajax({
-    ...opt,
+    ...options,
     url,
     params,
     method: 'get'
   })
 }
 
-/**
- * 提交post请求
- * @param {*} url 
- * @param {*} data 
- * @param {*} opt 
- */
-ajax.postForm = (url, data, opt) => {
-  return ajax({
-    ...opt,
-    method: 'post',
-    url,
-    data: typeof data == 'string' ? data : urlTool.encode(data),
-  })
-}
 
 /**
  * 提交json请求
  * @param {*} url 
  * @param {*} data 
- * @param {*} opt 
+ * @param {*} options 
  */
-ajax.post = (url, data, opt) => {
+export function post(url, data, options) {
   return ajax({
-    ...opt,
+    ...options,
     method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     url,
     data,
   })
@@ -105,15 +84,15 @@ ajax.post = (url, data, opt) => {
  * ajax上传文件请求
  * @param {*} url 
  * @param {*} data 
- * @param {*} opt 
+ * @param {*} options 
  */
-ajax.postFile = (url, data, opt) => {
-  let formData = new FormData()
+export function postFile(url, data, options) {
+  const formData = new FormData()
   for (let key in data) {
     formData.append(key, data[key])
   }
   return ajax({
-    ...opt,
+    ...options,
     method: 'post',
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -124,4 +103,9 @@ ajax.postFile = (url, data, opt) => {
 }
 
 
-export default ajax
+export default {
+  ajax,
+  get,
+  post,
+  postFile,
+}

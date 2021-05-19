@@ -16,8 +16,10 @@
     "@babel/plugin-transform-runtime": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
     "@babel/runtime": "^7.14.0",
+    "apite": "^1.2.4",
     "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
     "copy-webpack-plugin": "^8.1.1",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
@@ -38,8 +40,14 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.12.1",
+    "nprogress": "^0.2.0",
+    "vant": "^2.12.19",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
-  }
+  },
+  "browserslist": [
+    "Android >= 6",
+    "IOS >= 8"
+  ]
 }
